@@ -57,6 +57,8 @@ imgSize = 32; % EIT image is 32x32 pixels
                        ReconState = data.measurement.MeasurementState.ReconState; % when more then 6 are failing 
                        MeasState = data.measurement.MeasurementState.MeasState; % when device is compensationg 
                        ElectrodeQuality = data.measurement.ElectrodeQuality; 
+                       
+                       mkdir([ElectrodeQuality,'\','ElectrodeQuality']); % create sub-folder 
                        save([filePath,'\ElectrodeQuality\ElectrodeQuality_',zriFiles(iFiles).name(1:end-4),'.mat'],'ElectrodeQuality','ReconState','MeasState'); 
                         
                        % TODO maybe write to text files 
@@ -155,7 +157,7 @@ imgSize = 32; % EIT image is 32x32 pixels
                   
                    figure, plot(imageSumSignal); hold on; 
                    plot(breathInfoEIT(1,:),imageSumSignal(breathInfoEIT(1,:)),'dr'); hold on; % not sure why we have to add +1 
-                   plot(breathInfoEIT(2,:)+1,imageSumSignal(breathInfoEIT(2,:)+1),'dg'); 
+                   plot(breathInfoEIT(2,:),imageSumSignal(breathInfoEIT(2,:)),'dg'); 
                    t = title(['Breath-detection: ',compositFiles(iFiles).name]);  set(t,'interprete','non'), grid on
                    axis tight; 
                             
